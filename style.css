@@ -123,4 +123,25 @@ body {
 	.bd-placeholder-img-lg {
 	  font-size: 3.5rem;
 	}
-  }
+}
+
+.menu-my-menu-container {
+  width: auto;
+  margin: 0 auto;
+}
+
+#menu-my-menu {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 0;
+  list-style-type: none;
+}
+
+#menu-my-menu li {
+  padding: 0 1rem;
+}
+
+.post-categories {
+  padding-left: 0;
+  list-style-type: none;
+}

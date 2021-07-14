@@ -51,3 +51,6 @@ function custom_widgets_init() {
 	));
 }
 add_action( 'widgets_init', 'custom_widgets_init' );
+
+//Add theme support for featured images, from https://codex.wordpress.org/Post_Thumbnails
+add_theme_support( 'post-thumbnails' );

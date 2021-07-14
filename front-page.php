@@ -12,38 +12,39 @@
     </div>
   </div>
 
-  <div class="row mb-2">
+  <div class="row mb-2 d-flex align-items-stretch">
     <div class="col-md-6">
-      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-        <div class="col p-4 d-flex flex-column position-static">
-          <?php 
-            // WP_Query arguments
-            $args = array(
-              'order'                  => 'DESC',
-              'orderby'                => 'date',
-              'category_name'          => 'News',
-              'posts_per_page'         => '1',
-            );
-            
-            // The Query
-            $news_query = new WP_Query( $args );
-            
-            // The Loop
-            if ( $news_query->have_posts() ) {
-              while ( $news_query->have_posts() ) {
-                $news_query->the_post(); ?>
-                
-                <strong class="d-inline-block mb-2 text-primary"><?php the_category(); ?></strong>
-                <h3 class="mb-0"><?php the_title(); ?></h3>
-                <div class="mb-1 text-muted">Nov 12</div>
-                <p class="card-text mb-auto"><?php the_excerpt(); ?></p>
-                <a class="stretched-link" href="<?php the_permalink(); ?>">Continue reading</a>
-              </div>
-              <div class="col-auto d-none d-lg-block">
-                <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-      
-              </div>
-                
+      <?php 
+        // WP_Query arguments
+        $args = array(
+          'order'                  => 'DESC',
+          'orderby'                => 'date',
+          'category_name'          => 'News',
+          'posts_per_page'         => '1',
+        );
+        
+        // The Query
+        $news_query = new WP_Query( $args );
+        
+        // The Loop
+        if ( $news_query->have_posts() ) {
+          while ( $news_query->have_posts() ) {
+            $news_query->the_post(); ?>
+              <div class="row h-100 g-0 border rounded flex-md-row shadow-sm position-relative">
+                <div class="col-8 p-4 d-flex flex-column">
+                  <?php the_category(); ?>
+                  <h3 class="mb-0"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+                  <div class="mb-1 text-muted">Nov 12</div>
+                  <p class="card-text mb-auto"><?php the_excerpt(); ?></p>
+                  <a class="" href="<?php the_permalink(); ?>">Continue reading</a>
+                </div>
+                <div class="col-4 d-none d-lg-block overflow-hidden">
+                  <?php if ( has_post_thumbnail() ) : ?>
+                    <?php the_post_thumbnail( 'medium', ['class' => 'h-100 w-auto'] ); ?>
+                  <?php else: ?>
+                    <svg class="bd-placeholder-img" width="200" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                  <?php endif; ?>
+                </div>
             <?php  }
             } else {
               // no posts found
@@ -52,40 +53,40 @@
             // Restore original Post Data
             wp_reset_postdata();
           ?>
-          
       </div>
     </div>
     <div class="col-md-6">
-      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-        <div class="col p-4 d-flex flex-column position-static">
-          <?php 
-            // WP_Query arguments
-            $args = array(
-              'order'                  => 'DESC',
-              'orderby'                => 'date',
-              'category_name'          => 'Design',
-              'posts_per_page'         => '1',
-            );
-            
-            // The Query
-            $news_query = new WP_Query( $args );
-            
-            // The Loop
-            if ( $news_query->have_posts() ) {
-              while ( $news_query->have_posts() ) {
-                $news_query->the_post(); ?>
-                
-                <strong class="d-inline-block mb-2 text-primary"><?php the_category(); ?></strong>
-                <h3 class="mb-0"><?php the_title(); ?></h3>
-                <div class="mb-1 text-muted">Nov 12</div>
-                <p class="card-text mb-auto"><?php the_excerpt(); ?></p>
-                <a class="stretched-link" href="<?php the_permalink(); ?>">Continue reading</a>
-              </div>
-              <div class="col-auto d-none d-lg-block">
-                <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-      
-              </div>
-                
+      <?php 
+        // WP_Query arguments
+        $args = array(
+          'order'                  => 'DESC',
+          'orderby'                => 'date',
+          'category_name'          => 'Design',
+          'posts_per_page'         => '1',
+        );
+        
+        // The Query
+        $news_query = new WP_Query( $args );
+        
+        // The Loop
+        if ( $news_query->have_posts() ) {
+          while ( $news_query->have_posts() ) {
+            $news_query->the_post(); ?>
+              <div class="row h-100 g-0 border rounded flex-md-row shadow-sm position-relative">
+                <div class="col-8 p-4 d-flex flex-column">
+                  <?php the_category(); ?>
+                  <h3 class="mb-0"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+                  <div class="mb-1 text-muted">Nov 12</div>
+                  <p class="card-text mb-auto"><?php the_excerpt(); ?></p>
+                  <a class="" href="<?php the_permalink(); ?>">Continue reading</a>
+                </div>
+                <div class="col-4 d-none d-lg-block overflow-hidden">
+                  <?php if ( has_post_thumbnail() ) : ?>
+                    <?php the_post_thumbnail( 'post-thumbnail', ['class' => 'h-100 w-auto'] ); ?>
+                  <?php else: ?>
+                    <img class="h-100 w-auto" src="https://via.placeholder.com/300" alt="Placeholder image">
+                  <?php endif; ?>
+                </div>
             <?php  }
             } else {
               // no posts found
@@ -94,7 +95,6 @@
             // Restore original Post Data
             wp_reset_postdata();
           ?>
-          
       </div>
     </div>
   </div>
