@@ -6,9 +6,33 @@
 <main class="container">
   <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
     <div class="col-md-6 px-0">
-      <h1 class="display-4 fst-italic">Title of a longer featured blog post</h1>
-      <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what’s most interesting in this post’s contents.</p>
-      <p class="lead mb-0"><a href="#" class="text-white fw-bold">Continue reading...</a></p>
+      <?php 
+      // WP_Query arguments
+      $args = array(
+        'order'                  => 'DESC',
+        'orderby'                => 'date',
+        'posts_per_page'         => '1',
+        'meta_key'               => 'featured',
+        'meta_value'             => 1,
+      );
+      
+      // The Query
+      $news_query = new WP_Query( $args );
+      
+      // The Loop
+      if ( $news_query->have_posts() ) {
+        while ( $news_query->have_posts() ) {
+          $news_query->the_post(); ?>
+          <h2><a href="<?php the_permalink(); ?>"><?php the_title();?></a></h2>
+          <p class="card-text mb-auto"><?php the_excerpt(); ?></p>
+          <?php  }
+          } else {
+            // no posts found
+          }
+          
+          // Restore original Post Data
+          wp_reset_postdata();
+        ?>
     </div>
   </div>
 
@@ -42,7 +66,7 @@
                   <?php if ( has_post_thumbnail() ) : ?>
                     <?php the_post_thumbnail( 'medium', ['class' => 'h-100 w-auto'] ); ?>
                   <?php else: ?>
-                    <svg class="bd-placeholder-img" width="200" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                    <img class="h-100 w-auto" src="https://via.placeholder.com/300" alt="Placeholder image">
                   <?php endif; ?>
                 </div>
             <?php  }
